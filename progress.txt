@@ -154,12 +154,17 @@ Last updated: 2026-03-17
   - No URL params = normal first-load experience (onboarding prompt)
 - [x] Project builds and type-checks cleanly
 
-## Next Up (Milestone M2 — Data)
-- [ ] Seed dataset of 50+ companies in JSON
-- [ ] Research Lebanese companies across all industry categories
+### Session 5d — Seed Dataset (2026-03-17)
+- [x] Expanded companies.json from 5 → 76 real Lebanese companies
+  - All 12 industry categories covered (5-14 companies each)
+  - 14 cities/areas represented (Beirut, Tripoli, Jounieh, Sidon, Byblos, etc.)
+  - Includes all user-specified companies + many more
+  - Real company names, descriptions, websites, Arabic names
+  - Realistic Beirut neighborhood coordinates (Hamra, Achrafieh, Downtown, Verdun)
+  - No duplicate IDs, valid against Company interface
+- [x] Project builds and type-checks cleanly
 
 ## Remaining Milestones
-- M2 — Data: seed dataset 50+ companies
-- M3 — Core UX: remaining items (search, list view, URL params)
+- M3 — Core UX: search ✅, list view ✅, URL params ✅ — all done
 - M4 — Polish: clustering, mobile responsive, Vercel Analytics
 - M5 — Launch: deploy to Vercel, share with communities
