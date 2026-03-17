@@ -69,6 +69,21 @@ Last updated: 2026-03-17
 - [x] Updated App.tsx to load companies.json and pass to Map
 - [x] Project builds and type-checks cleanly
 
+### Session 2c — Company Detail Bottom Card (2026-03-17)
+- [x] Created src/components/CompanyCard.tsx — slide-up bottom card
+- [x] Shows: company name, Arabic name, industry tag chips (colored), city, description
+- [x] Shows links: website, email, careers, phone — all external links open in new tab
+- [x] Close button (X), Escape key, click outside all close the card
+- [x] Smooth slide-up animation (300ms ease-out, CSS transform transition)
+- [x] Desktop: max-w-[500px] centered at bottom; Mobile: full-width, max-h-[60vh] scrollable
+- [x] Dark mode support (dark bg, dark text)
+- [x] Rounded top corners, subtle box shadow
+- [x] Card does not block map interaction (no overlay)
+- [x] useMapMarkers now accepts onCompanyClick callback (replaces console.log)
+- [x] Selected company state managed in App.tsx, looked up by ID from companies array
+- [x] Map.tsx passes onCompanyClick through to useMapMarkers
+- [x] Project builds and type-checks cleanly
+
 ## Next Up (Milestone M2 — Data)
 - [ ] Seed dataset of 50+ companies in JSON
 - [ ] Research Lebanese companies across all industry categories

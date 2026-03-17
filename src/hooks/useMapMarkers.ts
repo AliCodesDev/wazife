@@ -106,8 +106,12 @@ function addMarkerLayers(map: MapboxMap, geojson: GeoJSON.FeatureCollection<GeoJ
 export function useMapMarkers(
   mapRef: React.RefObject<MapboxMap | null>,
   companies: Company[],
+  onCompanyClick?: (companyId: string) => void,
   activeFilters?: IndustryCategory[],
 ) {
+  const onCompanyClickRef = useRef(onCompanyClick);
+  onCompanyClickRef.current = onCompanyClick;
+
   const geojsonRef = useRef<GeoJSON.FeatureCollection<GeoJSON.Point>>(
     companiesToGeoJSON(companies, activeFilters),
   );
@@ -185,17 +189,7 @@ export function useMapMarkers(
         zoom: Math.max(map.getZoom(), 12),
       });
 
-      console.log("Company clicked:", {
-        id: props.id,
-        name: props.name,
-        industries: JSON.parse(props.industries as string),
-        city: props.city,
-        description: props.description,
-        website: props.website,
-        email: props.email,
-        careers_url: props.careers_url,
-        phone: props.phone,
-      });
+      onCompanyClickRef.current?.(props.id as string);
     };
 
     // Pointer cursors

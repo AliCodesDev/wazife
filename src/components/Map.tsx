@@ -9,13 +9,14 @@ import type { Company, IndustryCategory } from "../types/company";
 interface MapProps {
   theme: Theme;
   companies: Company[];
+  onCompanyClick?: (companyId: string) => void;
   activeFilters?: IndustryCategory[];
 }
 
 const LEBANON_CENTER: [number, number] = [35.85, 33.85];
 const LEBANON_ZOOM = 8;
 
-export default function Map({ theme, companies, activeFilters }: MapProps) {
+export default function Map({ theme, companies, onCompanyClick, activeFilters }: MapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const prevThemeRef = useRef<Theme>(theme);
@@ -56,7 +57,7 @@ export default function Map({ theme, companies, activeFilters }: MapProps) {
   }, [theme]);
 
   // Markers + clustering
-  useMapMarkers(mapRef, companies, activeFilters);
+  useMapMarkers(mapRef, companies, onCompanyClick, activeFilters);
 
   return <div ref={containerRef} className="h-full w-full" />;
 }
