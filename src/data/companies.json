@@ -1,0 +1,60 @@
+[
+  {
+    "id": "murex",
+    "name": "Murex",
+    "name_ar": "موريكس",
+    "industries": ["technology", "finance"],
+    "description": "Global fintech company specializing in trading, risk management, and processing solutions for capital markets.",
+    "latitude": 33.8938,
+    "longitude": 35.5018,
+    "city": "Beirut",
+    "website": "https://www.murex.com",
+    "careers_url": "https://www.murex.com/careers"
+  },
+  {
+    "id": "hopital-notre-dame",
+    "name": "Hôpital Notre Dame des Secours",
+    "name_ar": "مستشفى سيدة المعونات",
+    "industries": ["healthcare"],
+    "description": "Major university hospital in Jounieh providing comprehensive medical services and medical education.",
+    "latitude": 33.9808,
+    "longitude": 35.6178,
+    "city": "Jounieh",
+    "website": "https://www.hnds.org.lb",
+    "phone": "+961 9 230 230"
+  },
+  {
+    "id": "siren-analytics",
+    "name": "Siren Analytics",
+    "industries": ["technology"],
+    "description": "Data analytics and AI startup focused on healthcare data solutions in the MENA region.",
+    "latitude": 33.8969,
+    "longitude": 35.4731,
+    "city": "Beirut",
+    "website": "https://www.sirenanalytics.com",
+    "email": "info@sirenanalytics.com"
+  },
+  {
+    "id": "blom-bank",
+    "name": "BLOM Bank",
+    "name_ar": "بنك لبنان والمهجر",
+    "industries": ["finance"],
+    "description": "One of Lebanon's largest commercial banks with a wide network across the country and the region.",
+    "latitude": 33.8996,
+    "longitude": 35.4855,
+    "city": "Beirut",
+    "website": "https://www.blombank.com",
+    "careers_url": "https://www.blombank.com/careers"
+  },
+  {
+    "id": "tripoli-law-firm",
+    "name": "Obeid & Partners",
+    "industries": ["law"],
+    "description": "Full-service law firm with expertise in corporate law, banking, and real estate across Lebanon.",
+    "latitude": 34.4367,
+    "longitude": 35.8497,
+    "city": "Tripoli",
+    "website": "https://www.obeidpartners.com",
+    "email": "info@obeidpartners.com"
+  }
+]
