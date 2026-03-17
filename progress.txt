@@ -122,6 +122,24 @@ Last updated: 2026-03-17
   - Auto-adds company's primary industry to active filters if not already active
 - [x] Project builds and type-checks cleanly
 
+### Session 5b — List View (2026-03-17)
+- [x] Created src/components/ListView.tsx — sortable table/card list view
+  - Desktop: full table with Company, Industry, City, Website columns
+  - Mobile: card-based layout with name, city, industry chips, website link
+  - Sort dropdown: Name (A-Z), Industry, City
+  - Clicking a row/card opens the CompanyCard bottom sheet
+  - Website links open in new tab (stopPropagation so row click doesn't fire)
+  - Empty state when no filters: "Select industries to get started"
+  - Company count display
+- [x] Updated Navbar.tsx — added Map/List two-segment toggle button
+  - Icons + labels, labels hidden on small screens
+  - Active segment: dark fill (inverted in dark mode)
+- [x] Updated App.tsx — viewMode state ("map" | "list")
+  - Conditionally renders Map or ListView
+  - Both views share the same filter state
+  - Search select auto-switches to map view before flying
+- [x] Project builds and type-checks cleanly
+
 ## Next Up (Milestone M2 — Data)
 - [ ] Seed dataset of 50+ companies in JSON
 - [ ] Research Lebanese companies across all industry categories

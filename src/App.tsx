@@ -1,7 +1,9 @@
 import { useState, useCallback, useMemo, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import Navbar from "./components/Navbar";
+import type { ViewMode } from "./components/Navbar";
 import Map from "./components/Map";
+import ListView from "./components/ListView";
 import CompanyCard from "./components/CompanyCard";
 import FilterSidebar from "./components/FilterSidebar";
 import FilterChips from "./components/FilterChips";
@@ -18,6 +20,7 @@ function App() {
   const { theme, toggle } = useTheme();
   const { activeIndustries, toggleIndustry, showAll, clearAll, addIndustry } = useFilters();
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("map");
   const mapInstanceRef = useRef<mapboxgl.Map | null>(null);
 
   const activeFiltersArray = useMemo(
@@ -27,6 +30,10 @@ function App() {
 
   const handleCompanyClick = useCallback((id: string) => {
     setSelectedCompany(companiesById[id] ?? null);
+  }, []);
+
+  const handleListCompanyClick = useCallback((company: Company) => {
+    setSelectedCompany(company);
   }, []);
 
   const handleCloseCard = useCallback(() => {
@@ -39,20 +46,19 @@ function App() {
 
   const handleSearchSelect = useCallback(
     (company: Company) => {
-      // Ensure the company's primary industry filter is active
       const primaryIndustry = company.industries[0];
       if (primaryIndustry) {
         addIndustry(primaryIndustry);
       }
 
-      // Fly to the company location
+      // Switch to map view and fly to company
+      setViewMode("map");
       mapInstanceRef.current?.flyTo({
         center: [company.longitude, company.latitude],
         zoom: 14,
         duration: 1500,
       });
 
-      // Open the company card
       setSelectedCompany(company);
     },
     [addIndustry],
@@ -67,6 +73,8 @@ function App() {
         onToggleTheme={toggle}
         companies={companies}
         onSearchSelect={handleSearchSelect}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
       />
 
       {/* Mobile filter chips */}
@@ -74,7 +82,7 @@ function App() {
         <FilterChips activeIndustries={activeIndustries} onToggle={toggleIndustry} />
       </div>
 
-      {/* Main content: sidebar + map */}
+      {/* Main content: sidebar + map/list */}
       <div className="flex flex-1 overflow-hidden md:mt-14">
         <FilterSidebar
           activeIndustries={activeIndustries}
@@ -83,15 +91,25 @@ function App() {
           onClearAll={clearAll}
         />
 
-        <div className="relative flex-1">
-          <Map
-            theme={theme}
-            companies={companies}
-            onCompanyClick={handleCompanyClick}
-            activeFilters={hasFilters ? activeFiltersArray : undefined}
-            onMapReady={handleMapReady}
-          />
-          {!hasFilters && <OnboardingPrompt />}
+        <div className="relative flex flex-1 flex-col">
+          {viewMode === "map" ? (
+            <>
+              <Map
+                theme={theme}
+                companies={companies}
+                onCompanyClick={handleCompanyClick}
+                activeFilters={hasFilters ? activeFiltersArray : undefined}
+                onMapReady={handleMapReady}
+              />
+              {!hasFilters && <OnboardingPrompt />}
+            </>
+          ) : (
+            <ListView
+              companies={companies}
+              activeFilters={hasFilters ? activeFiltersArray : undefined}
+              onCompanyClick={handleListCompanyClick}
+            />
+          )}
         </div>
       </div>
 

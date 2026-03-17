@@ -2,14 +2,25 @@ import type { Theme } from "../hooks/useTheme";
 import type { Company } from "../types/company";
 import SearchBar from "./SearchBar";
 
+export type ViewMode = "map" | "list";
+
 interface NavbarProps {
   theme: Theme;
   onToggleTheme: () => void;
   companies: Company[];
   onSearchSelect: (company: Company) => void;
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
 }
 
-export default function Navbar({ theme, onToggleTheme, companies, onSearchSelect }: NavbarProps) {
+export default function Navbar({
+  theme,
+  onToggleTheme,
+  companies,
+  onSearchSelect,
+  viewMode,
+  onViewModeChange,
+}: NavbarProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900">
       <span className="shrink-0 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -17,6 +28,47 @@ export default function Navbar({ theme, onToggleTheme, companies, onSearchSelect
       </span>
 
       <SearchBar companies={companies} onSelect={onSearchSelect} />
+
+      {/* Map / List toggle */}
+      <div className="flex shrink-0 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600">
+        <button
+          onClick={() => onViewModeChange("map")}
+          aria-label="Map view"
+          className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
+            viewMode === "map"
+              ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+              : "bg-white text-gray-600 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+          }`}
+        >
+          {/* Map icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+            <line x1="8" y1="2" x2="8" y2="18" />
+            <line x1="16" y1="6" x2="16" y2="22" />
+          </svg>
+          <span className="hidden sm:inline">Map</span>
+        </button>
+        <button
+          onClick={() => onViewModeChange("list")}
+          aria-label="List view"
+          className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
+            viewMode === "list"
+              ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+              : "bg-white text-gray-600 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+          }`}
+        >
+          {/* List icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+            <line x1="3" y1="12" x2="3.01" y2="12" />
+            <line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          <span className="hidden sm:inline">List</span>
+        </button>
+      </div>
 
       <button
         onClick={onToggleTheme}
