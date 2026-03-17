@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from "react";
+import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import Navbar from "./components/Navbar";
 import type { ViewMode } from "./components/Navbar";
@@ -10,18 +10,72 @@ import FilterChips from "./components/FilterChips";
 import OnboardingPrompt from "./components/OnboardingPrompt";
 import { useTheme } from "./hooks/useTheme";
 import { useFilters } from "./hooks/useFilters";
+import { readUrlState, useUrlSync } from "./hooks/useUrlState";
 import companiesData from "./data/companies.json";
 import type { Company } from "./types/company";
 
 const companies = companiesData as Company[];
 const companiesById = Object.fromEntries(companies.map((c) => [c.id, c]));
 
+// Read URL state once before any renders
+const initialUrlState = readUrlState();
+
 function App() {
   const { theme, toggle } = useTheme();
-  const { activeIndustries, toggleIndustry, showAll, clearAll, addIndustry } = useFilters();
+  const { activeIndustries, toggleIndustry, showAll, clearAll, addIndustry } =
+    useFilters(initialUrlState.industries.size > 0 ? initialUrlState.industries : undefined);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
-  const [viewMode, setViewMode] = useState<ViewMode>("map");
+  const [viewMode, setViewMode] = useState<ViewMode>(initialUrlState.viewMode);
   const mapInstanceRef = useRef<mapboxgl.Map | null>(null);
+  const deepLinkCompanyId = useRef(initialUrlState.companyId);
+
+  // Sync state to URL
+  useUrlSync(activeIndustries, viewMode, selectedCompany?.id ?? null);
+
+  // Handle deep-link company on map ready
+  const handleMapReady = useCallback((map: mapboxgl.Map) => {
+    mapInstanceRef.current = map;
+
+    const companyId = deepLinkCompanyId.current;
+    if (!companyId) return;
+    deepLinkCompanyId.current = null;
+
+    const company = companiesById[companyId];
+    if (!company) return;
+
+    // Ensure industry is active
+    const primaryIndustry = company.industries[0];
+    if (primaryIndustry) {
+      addIndustry(primaryIndustry);
+    }
+
+    // Fly to and select
+    map.once("load", () => {
+      map.flyTo({
+        center: [company.longitude, company.latitude],
+        zoom: 14,
+        duration: 1500,
+      });
+    });
+    setSelectedCompany(company);
+  }, [addIndustry]);
+
+  // Handle deep-link company in list mode (map won't mount)
+  useEffect(() => {
+    if (viewMode !== "list") return;
+    const companyId = deepLinkCompanyId.current;
+    if (!companyId) return;
+    deepLinkCompanyId.current = null;
+
+    const company = companiesById[companyId];
+    if (!company) return;
+
+    const primaryIndustry = company.industries[0];
+    if (primaryIndustry) {
+      addIndustry(primaryIndustry);
+    }
+    setSelectedCompany(company);
+  }, [viewMode, addIndustry]);
 
   const activeFiltersArray = useMemo(
     () => Array.from(activeIndustries),
@@ -40,10 +94,6 @@ function App() {
     setSelectedCompany(null);
   }, []);
 
-  const handleMapReady = useCallback((map: mapboxgl.Map) => {
-    mapInstanceRef.current = map;
-  }, []);
-
   const handleSearchSelect = useCallback(
     (company: Company) => {
       const primaryIndustry = company.industries[0];
@@ -51,7 +101,6 @@ function App() {
         addIndustry(primaryIndustry);
       }
 
-      // Switch to map view and fly to company
       setViewMode("map");
       mapInstanceRef.current?.flyTo({
         center: [company.longitude, company.latitude],

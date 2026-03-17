@@ -2,9 +2,9 @@ import { useState, useCallback } from "react";
 import type { IndustryCategory } from "../types/company";
 import { INDUSTRY_CATEGORIES } from "../data/industries";
 
-export function useFilters() {
+export function useFilters(initialIndustries?: Set<IndustryCategory>) {
   const [activeIndustries, setActiveIndustries] = useState<Set<IndustryCategory>>(
-    new Set(),
+    () => initialIndustries ?? new Set(),
   );
 
   const toggleIndustry = useCallback((industry: IndustryCategory) => {

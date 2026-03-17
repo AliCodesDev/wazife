@@ -140,6 +140,20 @@ Last updated: 2026-03-17
   - Search select auto-switches to map view before flying
 - [x] Project builds and type-checks cleanly
 
+### Session 5c — Shareable URLs (2026-03-17)
+- [x] Created src/hooks/useUrlState.ts
+  - readUrlState(): reads ?industry=tech,finance&view=list&company=abc123 on page load
+  - useUrlSync(): syncs state to URL via replaceState (no history pollution)
+  - Human-readable slugs: tech, finance, health, law, eng, edu, marketing, hospitality, retail, ngo, media, other
+- [x] Updated useFilters.ts — accepts optional initialIndustries from URL
+- [x] Updated App.tsx — full URL state integration:
+  - Reads URL params before first render
+  - Deep-link ?company=id auto-selects company, enables its industry, flies map to location
+  - Works in both map and list view modes
+  - URL updates on every state change (filters, view mode, selected company)
+  - No URL params = normal first-load experience (onboarding prompt)
+- [x] Project builds and type-checks cleanly
+
 ## Next Up (Milestone M2 — Data)
 - [ ] Seed dataset of 50+ companies in JSON
 - [ ] Research Lebanese companies across all industry categories
