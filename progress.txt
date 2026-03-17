@@ -41,11 +41,21 @@ Last updated: 2026-03-17
 - External links: open in new tab
 - Analytics: Vercel Analytics (lightweight)
 
-## Next Up (Milestone M1 — Skeleton)
-- [ ] Render Mapbox map centered on Lebanon
-- [ ] Light/dark theme toggle
-- [ ] Basic map controls (zoom, pan)
-- [ ] Load Mapbox token from env
+### Session 2 — M1 Skeleton: Map + Theme (2026-03-17)
+- [x] Created src/components/Map.tsx — Mapbox GL map centered on Lebanon (33.85, 35.85, zoom 8)
+- [x] Map loads token from import.meta.env.VITE_MAPBOX_TOKEN
+- [x] Map has NavigationControl (zoom +/- buttons)
+- [x] Map fills viewport below navbar, mobile responsive
+- [x] Created src/components/Navbar.tsx — fixed top bar (h-14) with "Wazife" logo + theme toggle
+- [x] Created src/hooks/useTheme.ts — light/dark state, persists to localStorage, toggles .dark class on <html>
+- [x] Theme toggle switches map between light-v11 and dark-v11 styles via map.setStyle()
+- [x] Added @custom-variant dark selector to index.css for Tailwind v4 dark mode
+- [x] Wired everything together in App.tsx
+- [x] Project builds and type-checks cleanly
+
+## Next Up (Milestone M2 — Data)
+- [ ] Seed dataset of 50+ companies in JSON
+- [ ] Research Lebanese companies across all industry categories
 
 ## Remaining Milestones
 - M2 — Data: seed dataset 50+ companies
