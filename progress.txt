@@ -175,6 +175,19 @@ Last updated: 2026-03-17
 - [x] Consistent empty states between map and list view (matching icon + text style)
 - [x] Project builds and type-checks cleanly
 
+### Session 10 — Vercel Deploy Prep (2026-03-17)
+- [x] Verified `npm run build` passes (tsc + vite build)
+- [x] Verified `npm run preview` serves production build correctly
+- [x] Created vercel.json with SPA fallback rewrite (all routes → index.html)
+- [x] Confirmed VITE_MAPBOX_TOKEN referenced correctly in Map.tsx (add as env var in Vercel dashboard)
+- [x] No hardcoded localhost URLs or dev-only code
+- [x] Added Open Graph + Twitter Card meta tags to index.html
+- [x] Added theme-color meta tag (#3B82F6)
+- [x] Created custom favicon.svg (blue circle with white map pin)
+- [x] Removed unused icons.svg from public/
+- [x] Created placeholder og-image.png (replace with real screenshot after first deploy)
+- [x] Bundle: CSS 69KB (11KB gzip), JS 1.9MB (529KB gzip) — mapbox-gl is ~95% of JS
+- [x] All deps in use, no unused packages
+
 ## Remaining Milestones
-- M4 — Polish: clustering ✅, mobile responsive ✅, animations ✅, footer ✅, loading ✅, a11y ✅ — Vercel Analytics remaining
-- M5 — Launch: deploy to Vercel, share with communities
+- M5 — Launch: deploy to Vercel, add VITE_MAPBOX_TOKEN env var, Vercel Analytics, replace og-image.png with real screenshot
