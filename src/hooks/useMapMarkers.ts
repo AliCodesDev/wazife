@@ -14,9 +14,11 @@ function companiesToGeoJSON(
   companies: Company[],
   activeFilters?: IndustryCategory[],
 ): GeoJSON.FeatureCollection<GeoJSON.Point> {
+  // undefined = no filters active → show nothing (onboarding state)
+  // array = show only matching companies
   const filtered =
     activeFilters === undefined
-      ? companies
+      ? []
       : companies.filter((c) =>
           c.industries.some((ind) => activeFilters.includes(ind)),
         );

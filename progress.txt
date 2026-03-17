@@ -84,13 +84,32 @@ Last updated: 2026-03-17
 - [x] Map.tsx passes onCompanyClick through to useMapMarkers
 - [x] Project builds and type-checks cleanly
 
+### Session 2d — Industry Filters (2026-03-17)
+- [x] Created src/hooks/useFilters.ts — manages Set<IndustryCategory>, toggle/showAll/clearAll
+- [x] All industries start UNSELECTED (empty set) per PRD
+- [x] Created src/components/FilterSidebar.tsx — desktop left sidebar (260px)
+  - Toggleable industry list with colored dot indicators
+  - Show All / Clear buttons
+  - Collapsible with chevron toggle
+  - Hidden on mobile (md+ only)
+  - Pushes map content (not overlay)
+- [x] Created src/components/FilterChips.tsx — mobile horizontal scrolling chips
+  - Colored by industry, filled when active, outlined when inactive
+  - Visible only on mobile (hidden md+)
+  - Hidden scrollbar
+- [x] Created src/components/OnboardingPrompt.tsx — "Select industries to get started"
+  - Shown when no filters active, centered overlay on map
+- [x] Updated useMapMarkers: undefined activeFilters = show nothing (onboarding state)
+- [x] Updated App.tsx: new layout with sidebar + chips + onboarding wiring
+- [x] Added scrollbar-none utility to index.css
+- [x] Project builds and type-checks cleanly
+
 ## Next Up (Milestone M2 — Data)
 - [ ] Seed dataset of 50+ companies in JSON
 - [ ] Research Lebanese companies across all industry categories
 
 ## Remaining Milestones
 - M2 — Data: seed dataset 50+ companies
-- M3 — Core UX: markers, bottom card, sidebar filters, onboarding prompt
-- M4 — Search & List: autocomplete, list view toggle, URL params
-- M5 — Polish: clustering, mobile responsive, Vercel Analytics
-- M6 — Launch: deploy to Vercel, share with communities
+- M3 — Core UX: remaining items (search, list view, URL params)
+- M4 — Polish: clustering, mobile responsive, Vercel Analytics
+- M5 — Launch: deploy to Vercel, share with communities
