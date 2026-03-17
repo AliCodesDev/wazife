@@ -53,6 +53,22 @@ Last updated: 2026-03-17
 - [x] Wired everything together in App.tsx
 - [x] Project builds and type-checks cleanly
 
+### Session 2b — Markers + Clustering (2026-03-17)
+- [x] Created src/hooks/useMapMarkers.ts — custom hook for GeoJSON source + marker layers
+- [x] Companies loaded from JSON, converted to GeoJSON FeatureCollection
+- [x] Mapbox clustering enabled (radius 50px, max zoom 14)
+- [x] Cluster circles: slate gray, white border, stepped radius by count, count label
+- [x] Unclustered markers: colored by primary industry (INDUSTRY_COLORS), 8px radius, white border
+- [x] Click cluster → zoom to expansion zoom via getClusterExpansionZoom
+- [x] Click marker → center map + console.log company data (card comes next)
+- [x] Pointer cursor on hover for clusters and markers
+- [x] Layers re-added on style.load event (survives light/dark theme toggle)
+- [x] activeFilters prop wired through Map → useMapMarkers (undefined = show all, array = filter)
+- [x] GeoJSON source updates live when filters/companies change via setData()
+- [x] Updated Map.tsx to accept companies + activeFilters props
+- [x] Updated App.tsx to load companies.json and pass to Map
+- [x] Project builds and type-checks cleanly
+
 ## Next Up (Milestone M2 — Data)
 - [ ] Seed dataset of 50+ companies in JSON
 - [ ] Research Lebanese companies across all industry categories

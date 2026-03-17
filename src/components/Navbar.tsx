@@ -15,41 +15,27 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
       <button
         onClick={onToggleTheme}
         aria-label="Toggle theme"
-        className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
       >
         {theme === "light" ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-5 w-5"
+            fill="currentColor"
           >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            <path d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
           </svg>
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-5 w-5"
+            fill="currentColor"
           >
-            <circle cx={12} cy={12} r={5} />
-            <line x1={12} y1={1} x2={12} y2={3} />
-            <line x1={12} y1={21} x2={12} y2={23} />
-            <line x1={4.22} y1={4.22} x2={5.64} y2={5.64} />
-            <line x1={18.36} y1={18.36} x2={19.78} y2={19.78} />
-            <line x1={1} y1={12} x2={3} y2={12} />
-            <line x1={21} y1={12} x2={23} y2={12} />
-            <line x1={4.22} y1={19.78} x2={5.64} y2={18.36} />
-            <line x1={18.36} y1={5.64} x2={19.78} y2={4.22} />
+            <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
           </svg>
         )}
       </button>

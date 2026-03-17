@@ -3,17 +3,22 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { Theme } from "../hooks/useTheme";
 import { MAPBOX_STYLES } from "../hooks/useTheme";
+import { useMapMarkers } from "../hooks/useMapMarkers";
+import type { Company, IndustryCategory } from "../types/company";
 
 interface MapProps {
   theme: Theme;
+  companies: Company[];
+  activeFilters?: IndustryCategory[];
 }
 
 const LEBANON_CENTER: [number, number] = [35.85, 33.85];
 const LEBANON_ZOOM = 8;
 
-export default function Map({ theme }: MapProps) {
+export default function Map({ theme, companies, activeFilters }: MapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const prevThemeRef = useRef<Theme>(theme);
 
   // Initialize map once
   useEffect(() => {
@@ -39,13 +44,19 @@ export default function Map({ theme }: MapProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Update style when theme changes
+  // Update style only when theme actually changes (not on initial mount)
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    map.setStyle(MAPBOX_STYLES[theme]);
+    if (prevThemeRef.current !== theme) {
+      prevThemeRef.current = theme;
+      map.setStyle(MAPBOX_STYLES[theme]);
+    }
   }, [theme]);
+
+  // Markers + clustering
+  useMapMarkers(mapRef, companies, activeFilters);
 
   return <div ref={containerRef} className="h-full w-full" />;
 }
