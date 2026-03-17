@@ -27,5 +27,14 @@ export function useFilters() {
     setActiveIndustries(new Set());
   }, []);
 
-  return { activeIndustries, toggleIndustry, showAll, clearAll } as const;
+  const addIndustry = useCallback((industry: IndustryCategory) => {
+    setActiveIndustries((prev) => {
+      if (prev.has(industry)) return prev;
+      const next = new Set(prev);
+      next.add(industry);
+      return next;
+    });
+  }, []);
+
+  return { activeIndustries, toggleIndustry, showAll, clearAll, addIndustry } as const;
 }

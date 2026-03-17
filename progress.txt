@@ -104,6 +104,24 @@ Last updated: 2026-03-17
 - [x] Added scrollbar-none utility to index.css
 - [x] Project builds and type-checks cleanly
 
+### Session 5 — Search Autocomplete (2026-03-17)
+- [x] Created src/components/SearchBar.tsx — autocomplete search in navbar
+  - Controlled input with 150ms debounced filtering
+  - Matches company name (case-insensitive) and name_ar
+  - Max 8 results in dropdown with company name, city, primary industry chip
+  - Keyboard navigation: ArrowUp/Down, Enter to select, Escape to close
+  - Click outside closes dropdown
+  - Search icon, expands full-width on mobile, 300px on desktop
+  - Dark mode support
+- [x] Updated Navbar.tsx — search bar between logo and theme toggle
+- [x] Updated useFilters.ts — added addIndustry() method
+- [x] Updated Map.tsx — added onMapReady callback to expose map instance
+- [x] Updated App.tsx — wired search select handler:
+  - Flies map to company location (zoom 14, 1.5s animation)
+  - Opens company detail bottom card
+  - Auto-adds company's primary industry to active filters if not already active
+- [x] Project builds and type-checks cleanly
+
 ## Next Up (Milestone M2 — Data)
 - [ ] Seed dataset of 50+ companies in JSON
 - [ ] Research Lebanese companies across all industry categories

@@ -1,21 +1,27 @@
 import type { Theme } from "../hooks/useTheme";
+import type { Company } from "../types/company";
+import SearchBar from "./SearchBar";
 
 interface NavbarProps {
   theme: Theme;
   onToggleTheme: () => void;
+  companies: Company[];
+  onSearchSelect: (company: Company) => void;
 }
 
-export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
+export default function Navbar({ theme, onToggleTheme, companies, onSearchSelect }: NavbarProps) {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900">
-      <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900">
+      <span className="shrink-0 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
         Wazife
       </span>
+
+      <SearchBar companies={companies} onSelect={onSearchSelect} />
 
       <button
         onClick={onToggleTheme}
         aria-label="Toggle theme"
-        className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
       >
         {theme === "light" ? (
           <svg
