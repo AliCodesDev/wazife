@@ -42,10 +42,10 @@ export default function Footer({ className = "" }: FooterProps) {
         className="m-auto max-w-sm rounded-xl border border-gray-200 bg-white p-6 shadow-xl backdrop:bg-black/30 dark:border-gray-700 dark:bg-gray-800"
       >
         <h3 className="mb-2 text-base font-semibold text-gray-900 dark:text-white">
-          About Wazife
+          About Wazafak
         </h3>
         <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-          Wazife is an interactive map of companies in Lebanon, built to help
+          Wazafak is an interactive map of companies in Lebanon, built to help
           job seekers discover opportunities across industries. Browse by
           industry, search for companies, and find your next career move.
         </p>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const STORAGE_KEY = "wazife-theme";
+const STORAGE_KEY = "wazafak-theme";
 
 export type Theme = "light" | "dark";
 

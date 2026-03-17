@@ -24,7 +24,7 @@ export default function Navbar({
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center gap-2 border-b border-gray-200 bg-white px-3 dark:border-gray-700 dark:bg-gray-900 sm:gap-3 sm:px-4" role="navigation" aria-label="Main navigation">
       <span className="shrink-0 text-lg font-bold tracking-tight text-gray-900 dark:text-white sm:text-xl">
-        Wazife
+        Wazafak
       </span>
 
       <SearchBar companies={companies} onSelect={onSearchSelect} />
