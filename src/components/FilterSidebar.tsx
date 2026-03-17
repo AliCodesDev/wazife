@@ -16,7 +16,6 @@ export default function FilterSidebar({
   onClearAll,
 }: FilterSidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
-  const activeCount = activeIndustries.size;
 
   return (
     <div className="hidden md:flex h-full shrink-0">
@@ -49,13 +48,14 @@ export default function FilterSidebar({
           </div>
 
           {/* Industry list */}
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-0.5" role="group" aria-label="Industry filters">
             {INDUSTRY_CATEGORIES.map((ind) => {
               const active = activeIndustries.has(ind);
               return (
                 <button
                   key={ind}
                   onClick={() => onToggle(ind)}
+                  aria-pressed={active}
                   className={`flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition-colors ${
                     active
                       ? "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"

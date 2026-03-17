@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { Theme } from "../hooks/useTheme";
 import { MAPBOX_STYLES } from "../hooks/useTheme";
 import { useMapMarkers } from "../hooks/useMapMarkers";
 import type { Company, IndustryCategory } from "../types/company";
+import MapSkeleton from "./MapSkeleton";
 
 interface MapProps {
   theme: Theme;
@@ -21,6 +22,7 @@ export default function Map({ theme, companies, onCompanyClick, activeFilters, o
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const prevThemeRef = useRef<Theme>(theme);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   // Initialize map once
   useEffect(() => {
@@ -36,6 +38,8 @@ export default function Map({ theme, companies, onCompanyClick, activeFilters, o
     });
 
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
+
+    map.once("load", () => setMapLoaded(true));
 
     mapRef.current = map;
     onMapReady?.(map);
@@ -61,5 +65,14 @@ export default function Map({ theme, companies, onCompanyClick, activeFilters, o
   // Markers + clustering
   useMapMarkers(mapRef, companies, onCompanyClick, activeFilters);
 
-  return <div ref={containerRef} className="h-full w-full" />;
+  return (
+    <div className="relative h-full w-full">
+      {!mapLoaded && (
+        <div className="absolute inset-0 z-10">
+          <MapSkeleton />
+        </div>
+      )}
+      <div ref={containerRef} className="h-full w-full" />
+    </div>
+  );
 }

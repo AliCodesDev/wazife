@@ -39,12 +39,28 @@ export default function ListView({ companies, activeFilters, onCompanyClick }: L
   // Empty state — no filters active
   if (!activeFilters || activeFilters.length === 0) {
     return (
-      <div className="flex flex-1 items-center justify-center">
-        <div className="rounded-2xl bg-white/80 px-8 py-6 text-center shadow-lg backdrop-blur-sm dark:bg-gray-800/80">
-          <p className="text-lg font-medium text-gray-700 dark:text-gray-200">
+      <div className="flex flex-1 items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="rounded-2xl bg-white px-8 py-6 text-center shadow-lg dark:bg-gray-800">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/30">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-blue-500 dark:text-blue-400"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <p className="text-base font-semibold text-gray-800 dark:text-gray-100">
             Select industries to get started
           </p>
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
             Use the filters to explore companies
           </p>
         </div>
@@ -91,8 +107,11 @@ export default function ListView({ companies, activeFilters, onCompanyClick }: L
             {sorted.map((company) => (
               <tr
                 key={company.id}
+                tabIndex={0}
+                role="button"
                 onClick={() => onCompanyClick(company)}
-                className="cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onCompanyClick(company); } }}
+                className="cursor-pointer transition-colors hover:bg-gray-50 focus:bg-blue-50 focus:outline-none dark:hover:bg-gray-800/50 dark:focus:bg-gray-800"
               >
                 <td className="px-4 py-3">
                   <div className="font-medium text-gray-900 dark:text-white">
@@ -144,8 +163,11 @@ export default function ListView({ companies, activeFilters, onCompanyClick }: L
         {sorted.map((company) => (
           <div
             key={company.id}
+            tabIndex={0}
+            role="button"
             onClick={() => onCompanyClick(company)}
-            className="cursor-pointer rounded-xl border border-gray-200 bg-white p-4 transition-colors active:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:active:bg-gray-700"
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onCompanyClick(company); } }}
+            className="cursor-pointer rounded-xl border border-gray-200 bg-white p-4 transition-colors active:bg-gray-50 focus:border-blue-400 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:active:bg-gray-700 dark:focus:border-blue-500"
           >
             <div className="flex items-start justify-between gap-2">
               <div>

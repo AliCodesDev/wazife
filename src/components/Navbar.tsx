@@ -22,8 +22,8 @@ export default function Navbar({
   onViewModeChange,
 }: NavbarProps) {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900">
-      <span className="shrink-0 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center gap-2 border-b border-gray-200 bg-white px-3 dark:border-gray-700 dark:bg-gray-900 sm:gap-3 sm:px-4" role="navigation" aria-label="Main navigation">
+      <span className="shrink-0 text-lg font-bold tracking-tight text-gray-900 dark:text-white sm:text-xl">
         Wazife
       </span>
 
@@ -34,7 +34,8 @@ export default function Navbar({
         <button
           onClick={() => onViewModeChange("map")}
           aria-label="Map view"
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
+          aria-pressed={viewMode === "map"}
+          className={`flex items-center gap-1 px-2 py-1.5 text-xs font-medium transition-colors sm:gap-1.5 sm:px-3 ${
             viewMode === "map"
               ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
               : "bg-white text-gray-600 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
@@ -51,7 +52,8 @@ export default function Navbar({
         <button
           onClick={() => onViewModeChange("list")}
           aria-label="List view"
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
+          aria-pressed={viewMode === "list"}
+          className={`flex items-center gap-1 px-2 py-1.5 text-xs font-medium transition-colors sm:gap-1.5 sm:px-3 ${
             viewMode === "list"
               ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
               : "bg-white text-gray-600 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"

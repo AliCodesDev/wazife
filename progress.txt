@@ -164,7 +164,17 @@ Last updated: 2026-03-17
   - No duplicate IDs, valid against Company interface
 - [x] Project builds and type-checks cleanly
 
+### Session 9 — Polish Pass (2026-03-17)
+- [x] **Mobile responsiveness**: tightened navbar spacing (gap/px) for 375px+, short labels on filter chips, compact Map/List toggle buttons on mobile, safe-area-inset padding on CompanyCard
+- [x] **Animations & transitions**: dropdown fade+slide (150ms), filter chip scale+color transition (150ms), onboarding prompt fade-out (400ms) when first industry selected, map loading skeleton pulse
+- [x] **Footer**: new Footer component with About (popover modal), Submit a Company (Google Form placeholder), GitHub links — shown as thin bar in map view, inline in list view
+- [x] **Onboarding prompt styling**: added map pin icon, improved typography (semibold + subtext), rounded-2xl card with blue accent icon circle, smooth fade-out animation on first industry selection
+- [x] **Loading state**: MapSkeleton component with pulsing map icon shown while Mapbox GL initializes, prevents layout shift
+- [x] **Accessibility**: aria-labels on all icon buttons, aria-pressed on toggles, role=combobox on search, role=listbox on dropdown, role=dialog on CompanyCard, focus trap inside CompanyCard, keyboard-accessible ListView rows (Enter/Space), role=group on filter sections, role=navigation on navbar
+- [x] Improved page title and meta description in index.html
+- [x] Consistent empty states between map and list view (matching icon + text style)
+- [x] Project builds and type-checks cleanly
+
 ## Remaining Milestones
-- M3 — Core UX: search ✅, list view ✅, URL params ✅ — all done
-- M4 — Polish: clustering, mobile responsive, Vercel Analytics
+- M4 — Polish: clustering ✅, mobile responsive ✅, animations ✅, footer ✅, loading ✅, a11y ✅ — Vercel Analytics remaining
 - M5 — Launch: deploy to Vercel, share with communities

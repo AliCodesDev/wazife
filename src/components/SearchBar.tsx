@@ -123,6 +123,10 @@ export default function SearchBar({ companies, onSelect }: SearchBarProps) {
         <input
           ref={inputRef}
           type="text"
+          role="combobox"
+          aria-expanded={isOpen && results.length > 0}
+          aria-autocomplete="list"
+          aria-label="Search companies"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => {
@@ -136,7 +140,10 @@ export default function SearchBar({ companies, onSelect }: SearchBarProps) {
 
       {/* Dropdown */}
       {isOpen && results.length > 0 && (
-        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[360px] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-600 dark:bg-gray-800 md:w-[300px]">
+        <ul
+          role="listbox"
+          className="animate-dropdown-in absolute left-0 right-0 top-full z-50 mt-1 max-h-[360px] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-600 dark:bg-gray-800 md:w-[300px]"
+        >
           {results.map((company, index) => {
             const primaryIndustry = company.industries[0];
             return (

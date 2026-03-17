@@ -10,6 +10,41 @@ interface CompanyCardProps {
 export default function CompanyCard({ company, onClose }: CompanyCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
+  // Focus trap: focus the card when it opens, trap Tab inside
+  useEffect(() => {
+    if (!company || !cardRef.current) return;
+
+    // Focus the card container
+    cardRef.current.focus();
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !cardRef.current) return;
+
+      const focusable = cardRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleTab);
+    return () => window.removeEventListener("keydown", handleTab);
+  }, [company]);
+
   // Close on Escape
   useEffect(() => {
     if (!company) return;
@@ -42,13 +77,17 @@ export default function CompanyCard({ company, onClose }: CompanyCardProps) {
 
   return (
     <div
-      className={`pointer-events-none fixed bottom-0 left-0 right-0 z-40 flex justify-center transition-transform duration-300 ease-out ${
+      className={`pointer-events-none fixed bottom-0 left-0 right-0 z-40 flex justify-center px-3 pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ease-out ${
         company ? "translate-y-0" : "translate-y-full"
       }`}
+      aria-hidden={!company}
     >
       <div
         ref={cardRef}
-        className="pointer-events-auto w-full max-w-[500px] rounded-t-2xl bg-white p-5 shadow-[0_-4px_24px_rgba(0,0,0,0.12)] dark:bg-gray-800 dark:shadow-[0_-4px_24px_rgba(0,0,0,0.4)] max-sm:max-h-[60vh] max-sm:overflow-y-auto"
+        tabIndex={-1}
+        role="dialog"
+        aria-label={company ? `Company details: ${company.name}` : undefined}
+        className="pointer-events-auto w-full max-w-[500px] rounded-t-2xl bg-white p-5 shadow-[0_-4px_24px_rgba(0,0,0,0.12)] outline-none dark:bg-gray-800 dark:shadow-[0_-4px_24px_rgba(0,0,0,0.4)] max-sm:max-h-[60vh] max-sm:overflow-y-auto"
       >
         {company && (
           <>
@@ -66,7 +105,7 @@ export default function CompanyCard({ company, onClose }: CompanyCardProps) {
               </div>
               <button
                 onClick={onClose}
-                aria-label="Close"
+                aria-label="Close company details"
                 className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-200"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
