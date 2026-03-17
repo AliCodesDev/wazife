@@ -1,0 +1,55 @@
+WAZIFE — Progress Log
+=====================
+Last updated: 2026-03-17
+
+## Completed
+
+### Session 1 — Project Foundation (2026-03-17)
+- [x] Wrote PRD (prd.md) with full project spec
+- [x] Interviewed user on all design/UX/technical decisions
+- [x] Updated PRD with all decisions from interview
+- [x] Initialized Vite + React + TypeScript project
+- [x] Installed & configured Tailwind CSS v4 (CSS-first, @tailwindcss/vite plugin)
+- [x] Installed mapbox-gl + @types/mapbox-gl
+- [x] Created folder structure: src/components/, src/data/, src/hooks/, src/types/, src/utils/
+- [x] Created src/types/company.ts — Company interface, IndustryCategory type
+- [x] Created src/data/industries.ts — INDUSTRY_CATEGORIES, INDUSTRY_COLORS, INDUSTRY_LABELS
+- [x] Created src/data/companies.json — 5 sample companies (Beirut, Jounieh, Tripoli)
+- [x] Cleaned up App.tsx to simple "Wazife" heading with Tailwind
+- [x] Replaced index.css with Tailwind v4 import
+- [x] Removed old Vite boilerplate (App.css)
+- [x] Fixed .env leak — squashed git history to remove Mapbox token from commits
+- [x] Mapbox token lives in .env (VITE_MAPBOX_TOKEN), .env is gitignored
+- [x] Project builds and type-checks cleanly
+- [x] Single clean commit: "initial project setup: Vite + React + TS + Tailwind + Mapbox"
+
+## Key Decisions (from user interview)
+- Default map view: all of Lebanon (zoomed out)
+- Map theme: light + dark toggle
+- Company detail: bottom card (slides up from bottom)
+- Filters: all unselected on first load + onboarding prompt "Select industries to get started"
+- Search: autocomplete dropdown, flies to marker on select
+- Sidebar: collapsible, starts open on desktop
+- Mobile filters: top dropdown bar with horizontal scrolling chips
+- URL sharing: filter state in query params
+- List view: map/list toggle with sortable table (sort by name, industry, city)
+- Multi-industry: companies can have 1-3 industry tags
+- No company size for MVP
+- Language: English UI, Arabic data supported
+- Hosting: Vercel
+- Brand: modern/neutral (blues, grays, accent color)
+- External links: open in new tab
+- Analytics: Vercel Analytics (lightweight)
+
+## Next Up (Milestone M1 — Skeleton)
+- [ ] Render Mapbox map centered on Lebanon
+- [ ] Light/dark theme toggle
+- [ ] Basic map controls (zoom, pan)
+- [ ] Load Mapbox token from env
+
+## Remaining Milestones
+- M2 — Data: seed dataset 50+ companies
+- M3 — Core UX: markers, bottom card, sidebar filters, onboarding prompt
+- M4 — Search & List: autocomplete, list view toggle, URL params
+- M5 — Polish: clustering, mobile responsive, Vercel Analytics
+- M6 — Launch: deploy to Vercel, share with communities
