@@ -9,6 +9,7 @@ import FilterSidebar from "./components/FilterSidebar";
 import FilterChips from "./components/FilterChips";
 import OnboardingPrompt from "./components/OnboardingPrompt";
 import Footer from "./components/Footer";
+import { SubmitBannerInline, SubmitBannerFloating } from "./components/SubmitBanner";
 import { useTheme } from "./hooks/useTheme";
 import { useFilters } from "./hooks/useFilters";
 import { readUrlState, useUrlSync } from "./hooks/useUrlState";
@@ -171,6 +172,7 @@ function App() {
               />
               {!hasFilters && !onboardingFadingOut && <OnboardingPrompt />}
               {onboardingFadingOut && <OnboardingPrompt fadingOut />}
+              {hasFilters && <SubmitBannerFloating />}
             </>
           ) : (
             <ListView
@@ -180,7 +182,8 @@ function App() {
             />
           )}
 
-          {/* Footer */}
+          {/* Submit banner + Footer */}
+          {viewMode === "list" && hasFilters && <SubmitBannerInline />}
           {viewMode === "list" && <Footer />}
         </div>
       </div>

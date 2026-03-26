@@ -1,3 +1,5 @@
+import { SUBMIT_COMPANY_URL, GITHUB_URL } from "../constants";
+
 interface FooterProps {
   className?: string;
 }
@@ -18,7 +20,7 @@ export default function Footer({ className = "" }: FooterProps) {
       </button>
       <span className="text-gray-300 dark:text-gray-600">|</span>
       <a
-        href="https://forms.gle/placeholder"
+        href={SUBMIT_COMPANY_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
@@ -27,7 +29,7 @@ export default function Footer({ className = "" }: FooterProps) {
       </a>
       <span className="text-gray-300 dark:text-gray-600">|</span>
       <a
-        href="https://github.com/placeholder/wazife"
+        href={GITHUB_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
