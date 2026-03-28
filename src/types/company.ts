@@ -22,7 +22,4 @@ export interface Company {
   longitude: number;
   city: string;
   website?: string;
-  email?: string;
-  careers_url?: string;
-  phone?: string;
 }

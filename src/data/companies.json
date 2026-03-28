@@ -37,8 +37,7 @@
     "latitude": 33.889,
     "longitude": 35.5025,
     "city": "Beirut",
-    "website": "https://www.cedargate.com",
-    "careers_url": "https://www.cedargate.com/careers"
+    "website": "https://www.cedargate.com"
   },
   {
     "id": "siren-analytics",
@@ -51,8 +50,7 @@
     "latitude": 33.8969,
     "longitude": 35.4731,
     "city": "Beirut",
-    "website": "https://www.sirenanalytics.com",
-    "email": "info@sirenanalytics.com"
+    "website": "https://www.sirenanalytics.com"
   },
   {
     "id": "anghami",
@@ -66,8 +64,7 @@
     "latitude": 33.888,
     "longitude": 35.513,
     "city": "Beirut",
-    "website": "https://www.anghami.com",
-    "careers_url": "https://www.anghami.com/careers"
+    "website": "https://www.anghami.com"
   },
   {
     "id": "toters",
@@ -144,8 +141,7 @@
     "latitude": 33.8975,
     "longitude": 35.5065,
     "city": "Beirut",
-    "website": "https://www.bankaudi.com.lb",
-    "careers_url": "https://www.bankaudi.com.lb/careers"
+    "website": "https://www.bankaudi.com.lb"
   },
   {
     "id": "blom-bank",
@@ -158,8 +154,7 @@
     "latitude": 33.8996,
     "longitude": 35.4855,
     "city": "Beirut",
-    "website": "https://www.blombank.com",
-    "careers_url": "https://www.blombank.com/careers"
+    "website": "https://www.blombank.com"
   },
   {
     "id": "byblos-bank",
@@ -172,8 +167,7 @@
     "latitude": 33.8929,
     "longitude": 35.504,
     "city": "Beirut",
-    "website": "https://www.byblosbank.com",
-    "careers_url": "https://www.byblosbank.com/careers"
+    "website": "https://www.byblosbank.com"
   },
   {
     "id": "banque-du-liban",
@@ -239,8 +233,7 @@
     "latitude": 33.8955,
     "longitude": 35.484,
     "city": "Beirut",
-    "website": "https://www.cmc.com.lb",
-    "phone": "+961 1 372888"
+    "website": "https://www.cmc.com.lb"
   },
   {
     "id": "hotel-dieu-de-france",
@@ -253,8 +246,7 @@
     "latitude": 33.887,
     "longitude": 35.507,
     "city": "Beirut",
-    "website": "https://www.hdf.usj.edu.lb",
-    "phone": "+961 1 615300"
+    "website": "https://www.hdf.usj.edu.lb"
   },
   {
     "id": "rafik-hariri-university-hospital",
@@ -279,8 +271,7 @@
     "latitude": 33.9808,
     "longitude": 35.6178,
     "city": "Jounieh",
-    "website": "https://nduhospital.com/",
-    "phone": "+961 9 644 644"
+    "website": "https://nduhospital.com/"
   },
   {
     "id": "labora-labs",
@@ -304,8 +295,7 @@
     "latitude": 34.4367,
     "longitude": 35.8497,
     "city": "Tripoli",
-    "website": "https://www.obeidpartners.com",
-    "email": "info@obeidpartners.com"
+    "website": "https://www.obeidpartners.com"
   },
   {
     "id": "badri-salim-law",
@@ -317,8 +307,7 @@
     "latitude": 33.89,
     "longitude": 35.5055,
     "city": "Beirut",
-    "website": "https://www.bsm-legal.com",
-    "email": "info@bsm-legal.com"
+    "website": "https://www.bsm-legal.com"
   },
   {
     "id": "abou-jaoude",
@@ -353,8 +342,7 @@
     "description": "Boutique law firm in Achrafieh specializing in tech law, startups, intellectual property, and data privacy.",
     "latitude": 33.888,
     "longitude": 35.5145,
-    "city": "Beirut",
-    "email": "info@ftml-law.com"
+    "city": "Beirut"
   },
   {
     "id": "dar-al-handasah",
@@ -367,8 +355,7 @@
     "latitude": 33.8895,
     "longitude": 35.5085,
     "city": "Beirut",
-    "website": "https://www.dargroup.com",
-    "careers_url": "https://www.dargroup.com/careers"
+    "website": "https://www.dargroup.com"
   },
   {
     "id": "khatib-alami",
@@ -446,8 +433,7 @@
     "latitude": 33.875,
     "longitude": 35.513,
     "city": "Beirut",
-    "website": "https://www.lau.edu.lb",
-    "careers_url": "https://hr.lau.edu.lb"
+    "website": "https://www.lau.edu.lb"
   },
   {
     "id": "lau-byblos",
@@ -524,8 +510,7 @@
     "latitude": 33.896,
     "longitude": 35.487,
     "city": "Beirut",
-    "website": "https://www.impactbbdo.com",
-    "careers_url": "https://www.impactbbdo.com/careers"
+    "website": "https://www.impactbbdo.com"
   },
   {
     "id": "leo-burnett-beirut",
@@ -756,8 +741,7 @@
     "latitude": 33.884,
     "longitude": 35.51,
     "city": "Beirut",
-    "website": "https://www.redcross.org.lb",
-    "phone": "+961 1 372802"
+    "website": "https://www.redcross.org.lb"
   },
   {
     "id": "unhcr-lebanon",
@@ -874,8 +858,7 @@
     "latitude": 33.821,
     "longitude": 35.488,
     "city": "Beirut",
-    "website": "https://www.mea.com.lb",
-    "careers_url": "https://www.mea.com.lb/careers"
+    "website": "https://www.mea.com.lb"
   },
   {
     "id": "ogero",
@@ -1559,8 +1542,7 @@
     "latitude": 33.875,
     "longitude": 35.5125,
     "city": "Beirut",
-    "website": "https://www.berytech.org",
-    "email": "info@berytech.org"
+    "website": "https://www.berytech.org"
   },
   {
     "id": "eddys-group",
@@ -1687,8 +1669,7 @@
     "latitude": 33.8943,
     "longitude": 35.5025,
     "city": "Beirut",
-    "website": "https://www.sabaip.com",
-    "email": "saba@sabaip.com"
+    "website": "https://www.sabaip.com"
   },
   {
     "id": "alem-associates",
@@ -2016,8 +1997,7 @@
     "latitude": 33.8955,
     "longitude": 35.502,
     "city": "Beirut",
-    "website": "https://www.bankofbeirut.com",
-    "careers_url": "https://www.bankofbeirut.com/careers"
+    "website": "https://www.bankofbeirut.com"
   },
   {
     "id": "fenicia-bank",
