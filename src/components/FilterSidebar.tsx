@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { IndustryCategory } from "../types/company";
 import { INDUSTRY_CATEGORIES, INDUSTRY_COLORS, INDUSTRY_LABELS } from "../data/industries";
+import { ChevronRightIcon } from "./Icon";
 
 interface FilterSidebarProps {
   activeIndustries: Set<IndustryCategory>;
@@ -84,21 +85,7 @@ export default function FilterSidebar({
         aria-label={collapsed ? "Open filters" : "Collapse filters"}
         className="relative flex h-10 w-7 items-center justify-center self-center -ml-px rounded-r-lg border border-l-0 border-gray-200 bg-white text-gray-500 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800"
       >
-        {/* Chevron */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={`transition-transform ${collapsed ? "" : "rotate-180"}`}
-        >
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
+        <ChevronRightIcon className={`transition-transform ${collapsed ? "" : "rotate-180"}`} />
       </button>
     </div>
   );

@@ -189,5 +189,24 @@ Last updated: 2026-03-17
 - [x] Bundle: CSS 69KB (11KB gzip), JS 1.9MB (529KB gzip) — mapbox-gl is ~95% of JS
 - [x] All deps in use, no unused packages
 
+### Session 11 — Dataset Expansion (2026-03-26)
+- [x] Added 39 new companies to companies.json (76 → 115 total)
+  - **International NGOs (13):** WHO, WFP, ILO, UNRWA, UNFPA, ICRC, MSF, Save the Children, Mercy Corps, NRC, IRC, World Vision, FAO
+  - **Lebanese NGOs (3):** Amel Association, Offre Joie, Nawaya Network
+  - **Universities (9):** Lebanese University, Antonine University, Haigazian, Jinan (Tripoli), Azm (Tripoli), Rafik Hariri University (Mechref), Islamic University (Khaldeh), Beirut Arab University, ALBA (Sin el Fil)
+  - **Hospitals outside Beirut (8):** Nini Hospital (Tripoli), Tripoli Governmental, Islamic Hospital Tripoli, Labib Medical (Sidon), Chtaura Governmental, Tal Chiha (Zahle), Mount Lebanon (Hazmieh), Saint George (Ajaltoun)
+  - **Retail (6):** Carrefour, Khoury Home, Bou Khalil, Wooden Bakery, City Centre Beirut
+- [x] New cities added: Chtaura, Zahle, Hazmieh, Ajaltoun, Mechref, Khaldeh, Sin el Fil
+- [x] No duplicate IDs, valid JSON format
+
+### Session 12 — Refactoring (2026-04-14)
+- [x] **Shared Icon component** (`src/components/Icon.tsx`): extracted 10 inline SVG icons into reusable components (SearchIcon, CloseIcon, ExternalLinkIcon, MapIcon, ListIcon, MapPinIcon, ChevronRightIcon, PlusCircleIcon, MoonIcon, SunIcon)
+- [x] **Shared IndustryBadge component** (`src/components/IndustryBadge.tsx`): replaced 5 duplicate inline industry badge/chip renders across SearchBar, CompanyCard, ListView (desktop + mobile)
+- [x] **Extracted useOnboardingFadeOut hook** (`src/hooks/useOnboardingFadeOut.ts`): moved fade-out state logic out of App.tsx
+- [x] **Code splitting**: lazy-loaded Map component via `React.lazy()` + `Suspense` with MapSkeleton fallback — mapbox-gl (1.7MB) now loads only when map view is shown, main bundle reduced to 275KB
+- [x] Updated all consumer components: Navbar, SearchBar, CompanyCard, ListView, OnboardingPrompt, MapSkeleton, FilterSidebar, SubmitBanner, App.tsx
+- [x] Removed local IndustryChip from SearchBar (replaced by shared IndustryBadge)
+- [x] Build passes, TypeScript clean
+
 ## Remaining Milestones
 - M5 — Launch: deploy to Vercel, add VITE_MAPBOX_TOKEN env var, Vercel Analytics, replace og-image.png with real screenshot

@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
 import type { Company, IndustryCategory } from "../types/company";
-import { INDUSTRY_COLORS, INDUSTRY_LABELS } from "../data/industries";
+import { INDUSTRY_LABELS } from "../data/industries";
+import { MapPinIcon } from "./Icon";
+import IndustryBadge from "./IndustryBadge";
 
 type SortOption = "name" | "industry" | "city";
 
@@ -42,20 +44,7 @@ export default function ListView({ companies, activeFilters, onCompanyClick }: L
       <div className="flex flex-1 items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="rounded-2xl bg-white px-8 py-6 text-center shadow-lg dark:bg-gray-800">
           <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/30">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-blue-500 dark:text-blue-400"
-            >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+            <MapPinIcon className="text-blue-500 dark:text-blue-400" />
           </div>
           <p className="text-base font-semibold text-gray-800 dark:text-gray-100">
             Select industries to get started
@@ -126,13 +115,7 @@ export default function ListView({ companies, activeFilters, onCompanyClick }: L
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap gap-1">
                     {company.industries.map((ind) => (
-                      <span
-                        key={ind}
-                        className="inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium text-white"
-                        style={{ backgroundColor: INDUSTRY_COLORS[ind] }}
-                      >
-                        {INDUSTRY_LABELS[ind].split(" / ")[0]}
-                      </span>
+                      <IndustryBadge key={ind} industry={ind} short />
                     ))}
                   </div>
                 </td>
@@ -192,13 +175,7 @@ export default function ListView({ companies, activeFilters, onCompanyClick }: L
             </div>
             <div className="mt-2 flex flex-wrap gap-1">
               {company.industries.map((ind) => (
-                <span
-                  key={ind}
-                  className="inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium text-white"
-                  style={{ backgroundColor: INDUSTRY_COLORS[ind] }}
-                >
-                  {INDUSTRY_LABELS[ind].split(" / ")[0]}
-                </span>
+                <IndustryBadge key={ind} industry={ind} short />
               ))}
             </div>
           </div>

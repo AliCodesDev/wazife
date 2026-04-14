@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
-import type { Company, IndustryCategory } from "../types/company";
-import { INDUSTRY_COLORS, INDUSTRY_LABELS } from "../data/industries";
+import type { Company } from "../types/company";
+import { SearchIcon } from "./Icon";
+import IndustryBadge from "./IndustryBadge";
 
 interface SearchBarProps {
   companies: Company[];
@@ -105,21 +106,7 @@ export default function SearchBar({ companies, onSelect }: SearchBarProps) {
     <div ref={containerRef} className="relative flex-1 md:flex-none">
       {/* Search input */}
       <div className="relative">
-        <svg
-          className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.3-4.3" />
-        </svg>
+        <SearchIcon className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
         <input
           ref={inputRef}
           type="text"
@@ -170,27 +157,12 @@ export default function SearchBar({ companies, onSelect }: SearchBarProps) {
                     {company.city}
                   </div>
                 </div>
-                <IndustryChip industry={primaryIndustry} />
+                <IndustryBadge industry={primaryIndustry} short />
               </li>
             );
           })}
         </ul>
       )}
     </div>
-  );
-}
-
-function IndustryChip({ industry }: { industry: IndustryCategory }) {
-  const color = INDUSTRY_COLORS[industry];
-  const label = INDUSTRY_LABELS[industry];
-  const shortLabel = label.split(" / ")[0];
-
-  return (
-    <span
-      className="inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[10px] font-medium text-white"
-      style={{ backgroundColor: color }}
-    >
-      {shortLabel}
-    </span>
   );
 }

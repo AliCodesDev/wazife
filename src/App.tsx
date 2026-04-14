@@ -1,9 +1,11 @@
-import { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import { useState, useCallback, useMemo, useRef, useEffect, lazy, Suspense } from "react";
 import type { Map as MapboxMap } from "mapbox-gl";
 import Navbar from "./components/Navbar";
 import type { ViewMode } from "./components/Navbar";
-import Map from "./components/Map";
 import ListView from "./components/ListView";
+import MapSkeleton from "./components/MapSkeleton";
+
+const Map = lazy(() => import("./components/Map"));
 import CompanyCard from "./components/CompanyCard";
 import FilterSidebar from "./components/FilterSidebar";
 import FilterChips from "./components/FilterChips";
@@ -12,6 +14,7 @@ import Footer from "./components/Footer";
 import { SubmitBannerInline, SubmitBannerFloating } from "./components/SubmitBanner";
 import { useTheme } from "./hooks/useTheme";
 import { useFilters } from "./hooks/useFilters";
+import { useOnboardingFadeOut } from "./hooks/useOnboardingFadeOut";
 import { readUrlState, useUrlSync } from "./hooks/useUrlState";
 import companiesData from "./data/companies.json";
 import type { Company } from "./types/company";
@@ -31,25 +34,8 @@ function App() {
   const mapInstanceRef = useRef<MapboxMap | null>(null);
   const deepLinkCompanyId = useRef(initialUrlState.companyId);
 
-  // Track whether onboarding was previously shown and is now fading out
-  const [onboardingFadingOut, setOnboardingFadingOut] = useState(false);
-  const hadFiltersRef = useRef(false);
-
   const hasFilters = activeIndustries.size > 0;
-
-  // Detect transition from no-filters to has-filters for fade-out
-  useEffect(() => {
-    if (hasFilters && !hadFiltersRef.current) {
-      // First industry selected — trigger fade-out
-      setOnboardingFadingOut(true);
-      const timer = setTimeout(() => setOnboardingFadingOut(false), 400);
-      hadFiltersRef.current = true;
-      return () => clearTimeout(timer);
-    }
-    if (!hasFilters) {
-      hadFiltersRef.current = false;
-    }
-  }, [hasFilters]);
+  const onboardingFadingOut = useOnboardingFadeOut(hasFilters);
 
   // Sync state to URL
   useUrlSync(activeIndustries, viewMode, selectedCompany?.id ?? null);
@@ -163,13 +149,15 @@ function App() {
         <div className="relative flex flex-1 flex-col">
           {viewMode === "map" ? (
             <>
-              <Map
-                theme={theme}
-                companies={companies}
-                onCompanyClick={handleCompanyClick}
-                activeFilters={hasFilters ? activeFiltersArray : undefined}
-                onMapReady={handleMapReady}
-              />
+              <Suspense fallback={<MapSkeleton />}>
+                <Map
+                  theme={theme}
+                  companies={companies}
+                  onCompanyClick={handleCompanyClick}
+                  activeFilters={hasFilters ? activeFiltersArray : undefined}
+                  onMapReady={handleMapReady}
+                />
+              </Suspense>
               {!hasFilters && !onboardingFadingOut && <OnboardingPrompt />}
               {onboardingFadingOut && <OnboardingPrompt fadingOut />}
               {hasFilters && <SubmitBannerFloating />}
