@@ -26,3 +26,6 @@ dist-ssr
 .env
 .env.*.local
 
+
+# Claude Code local state — never commit
+.claude/
